@@ -34,3 +34,7 @@ C:\os\SwaggerJacker\SwaggerJacker.Tests\bin\Debug\System.Web.WebPages.Razor.xml
 C:\os\SwaggerJacker\SwaggerJacker.Tests\obj\Debug\SwaggerJacker.Tests.csprojResolveAssemblyReference.cache
 C:\os\SwaggerJacker\SwaggerJacker.Tests\obj\Debug\SwaggerJacker.Tests.dll
 C:\os\SwaggerJacker\SwaggerJacker.Tests\obj\Debug\SwaggerJacker.Tests.pdb
+C:\os\SwaggerJacker\SwaggerJacker.Tests\bin\Debug\SwaggerJacker.BusinessObjects.dll
+C:\os\SwaggerJacker\SwaggerJacker.Tests\bin\Debug\SwaggerJacker.DAL.dll
+C:\os\SwaggerJacker\SwaggerJacker.Tests\bin\Debug\SwaggerJacker.BusinessObjects.pdb
+C:\os\SwaggerJacker\SwaggerJacker.Tests\bin\Debug\SwaggerJacker.DAL.pdb

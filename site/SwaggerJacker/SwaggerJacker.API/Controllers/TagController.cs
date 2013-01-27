@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+
 using SwaggerJacker.BusinessObjects;
 using SwaggerJacker.DAL;
 
-namespace SwaggerJacker.Web.Controllers
+using System.Configuration;
+
+namespace SwaggerJacker.API.Controllers
 {
-    public class HomeController : Controller
+    public class TagController : ApiController
     {
         #region Fields - Private
         private const string _dbConnectionStringName
@@ -19,7 +22,7 @@ namespace SwaggerJacker.Web.Controllers
         #endregion
 
         #region CTOR
-        public HomeController()
+        public TagController()
         {
             string connectionString
                 = ConfigurationManager.ConnectionStrings[_dbConnectionStringName].ConnectionString;
@@ -28,19 +31,18 @@ namespace SwaggerJacker.Web.Controllers
         }
         #endregion
 
-        public ActionResult Index()
+        #region Methods - Public
+
+        // GET
+        // Fetch all tags for a url.
+
+        [HttpGet]
+        public IEnumerable<Tag> Index( string url )
         {
-            return View();
+            List<Tag> allTags = _dal.GetTags( url ).ToList<Tag>();
+            return allTags;
         }
 
-        public ActionResult About()
-        {
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            return View();
-        }
+        #endregion
     }
 }

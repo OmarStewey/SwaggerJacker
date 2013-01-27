@@ -33,3 +33,8 @@ C:\os\SwaggerJacker\SwaggerJacker.Web\bin\System.Web.WebPages.Deployment.xml
 C:\os\SwaggerJacker\SwaggerJacker.Web\bin\System.Web.WebPages.Razor.xml
 C:\os\SwaggerJacker\SwaggerJacker.Web\obj\Debug\SwaggerJacker.Web.dll
 C:\os\SwaggerJacker\SwaggerJacker.Web\obj\Debug\SwaggerJacker.Web.pdb
+C:\os\SwaggerJacker\SwaggerJacker.Web\bin\SwaggerJacker.BusinessObjects.dll
+C:\os\SwaggerJacker\SwaggerJacker.Web\bin\SwaggerJacker.DAL.dll
+C:\os\SwaggerJacker\SwaggerJacker.Web\bin\SwaggerJacker.BusinessObjects.pdb
+C:\os\SwaggerJacker\SwaggerJacker.Web\bin\SwaggerJacker.DAL.pdb
+C:\os\SwaggerJacker\SwaggerJacker.Web\obj\Debug\SwaggerJacker.Web.csprojResolveAssemblyReference.cache
