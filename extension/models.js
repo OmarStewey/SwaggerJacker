@@ -5,16 +5,17 @@
 
 var Tag = function( argObj ){
 
-	this.Id: argObj.Id,
-	
-	this.url : argObj.url,
+	this.Id = argObj.Id;
 
-	this.img : argObj.img,
+	this.img = $( 'img[src=' + argObj.imgSrc + ']' ); // jQuery wrapped <img> tag.
 
 	this.coords = {
 		x: argObj.x,
 		y: argObj.y
-	},
+	};
+
+	this.title = argObj.title;
+	this.url = argObj.url;
 
 	this.score = 0
 }
@@ -40,15 +41,20 @@ Tag.prototype.downvote = function(){
 
 Tag.prototype.update = function(){
 
-	// post to server
+	// send to server (PUT)
 	// only submit id and new score
 	$.ajax({
 		url: SwaggerJacker.config.updateUrl,
+		
 		data: {
 			tagId: this.Id,
 			score: this.score
-		}
+		},
+
+		type: 'put'
 	}).done( function( data ){
+		
 		// Do stuff after updating score
+
 	} );
 }
