@@ -24,13 +24,14 @@ namespace SwaggerJacker.Web.Controllers
             string connectionString
                 = ConfigurationManager.ConnectionStrings[_dbConnectionStringName].ConnectionString;
 
-            _dal = new SwaggerJackerSqlDal( _dbConnectionStringName );
+            _dal = new SwaggerJackerSqlDal( connectionString );
         }
         #endregion
 
         public ActionResult Index()
         {
-            return View();
+            var tags = _dal.GetTags( "" );
+            return View( tags );
         }
 
         public ActionResult About()
@@ -42,5 +43,12 @@ namespace SwaggerJacker.Web.Controllers
         {
             return View();
         }
+
+        protected override void Dispose( bool disposing )
+        {
+                base.Dispose( disposing );
+        }
     }
+
+    
 }

@@ -12,7 +12,7 @@ using System.Configuration;
 
 namespace SwaggerJacker.API.Controllers
 {
-    public class TagController : ApiController
+    public class TagsController : ApiController
     {
         #region Fields - Private
         private const string _dbConnectionStringName
@@ -22,12 +22,12 @@ namespace SwaggerJacker.API.Controllers
         #endregion
 
         #region CTOR
-        public TagController()
+        public TagsController()
         {
             string connectionString
                 = ConfigurationManager.ConnectionStrings[_dbConnectionStringName].ConnectionString;
 
-            _dal = new SwaggerJackerSqlDal( _dbConnectionStringName );
+            _dal = new SwaggerJackerSqlDal( connectionString );
         }
         #endregion
 
@@ -39,7 +39,7 @@ namespace SwaggerJacker.API.Controllers
         [HttpGet]
         public IEnumerable<Tag> Index( string url )
         {
-            List<Tag> allTags = _dal.GetTags( url ).ToList<Tag>();
+            List<Tag> allTags = _dal.GetTags( "http://www.omarstewey.com" ).ToList<Tag>();
             return allTags;
         }
 
