@@ -16,3 +16,8 @@ Web.config
 
 .mdf
 .ldf
+
+#libs#
+######
+.dll
+.pdb
