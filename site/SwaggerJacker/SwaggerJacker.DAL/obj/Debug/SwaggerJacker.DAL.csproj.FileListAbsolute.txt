@@ -1,0 +1,14 @@
+C:\os\SwaggerJacker\SwaggerJacker.DAL\bin\Debug\SwaggerJacker.DAL.dll
+C:\os\SwaggerJacker\SwaggerJacker.DAL\bin\Debug\SwaggerJacker.DAL.pdb
+C:\os\SwaggerJacker\SwaggerJacker.DAL\bin\Debug\SwaggerJacker.BusinessObjects.dll
+C:\os\SwaggerJacker\SwaggerJacker.DAL\bin\Debug\SwaggerJacker.BusinessObjects.pdb
+C:\os\SwaggerJacker\SwaggerJacker.DAL\obj\Debug\SwaggerJacker.DAL.csprojResolveAssemblyReference.cache
+C:\os\SwaggerJacker\SwaggerJacker.DAL\obj\Debug\SwaggerJacker.DAL.dll
+C:\os\SwaggerJacker\SwaggerJacker.DAL\obj\Debug\SwaggerJacker.DAL.pdb
+C:\os\dev\SwaggerJacker\site\SwaggerJacker\SwaggerJacker.DAL\bin\Debug\SwaggerJacker.DAL.dll
+C:\os\dev\SwaggerJacker\site\SwaggerJacker\SwaggerJacker.DAL\bin\Debug\SwaggerJacker.DAL.pdb
+C:\os\dev\SwaggerJacker\site\SwaggerJacker\SwaggerJacker.DAL\bin\Debug\SwaggerJacker.BusinessObjects.dll
+C:\os\dev\SwaggerJacker\site\SwaggerJacker\SwaggerJacker.DAL\bin\Debug\SwaggerJacker.BusinessObjects.pdb
+C:\os\dev\SwaggerJacker\site\SwaggerJacker\SwaggerJacker.DAL\obj\Debug\SwaggerJacker.DAL.csprojResolveAssemblyReference.cache
+C:\os\dev\SwaggerJacker\site\SwaggerJacker\SwaggerJacker.DAL\obj\Debug\SwaggerJacker.DAL.dll
+C:\os\dev\SwaggerJacker\site\SwaggerJacker\SwaggerJacker.DAL\obj\Debug\SwaggerJacker.DAL.pdb
