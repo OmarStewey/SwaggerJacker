@@ -15,14 +15,32 @@ var Tag = function( argObj ){
 	};
 
 	this.title = argObj.title;
+	this.description = argObj.description;
+
 	this.url = argObj.url;
 
-	this.score = 0
+	this.score = 0;
 }
 
 // Tag methods
 Tag.prototype.render = function(){
+	
+	// Get image
+	var tagImg = this.img;
+	var imgWrapper = tagImg.parent();
 
+	// Check if wrapped
+	if( !imgWrapper.hasClass('sjImageWrap') ){
+
+		// Wrap in relatively positioned span
+		imgWrapper = tagImg.wrap('<span class="sjImageWrap" />');
+	}
+
+	// Add absolutely positioned tag marker
+	// replace with template
+	imgWrapper
+		.append('<span class="sj_tag" style="left: '+ this.coords.x + '; top: ' + this.coords.y + '" />')
+		.text( this.title );
 }
 
 Tag.prototype.delete = function(){

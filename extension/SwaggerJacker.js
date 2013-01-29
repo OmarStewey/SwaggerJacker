@@ -4,14 +4,14 @@ var Swagger_Jacker = {
 
 		baseUrl: 'http://www.site.com/swaggerjacker/api/',
 
-		fetchUrl: this.baseUrl + 'tags',
+		fetchUrl: this.baseUrl + 'Tags',
 
-		submitUrl: this.baseUrl + 'new',
+		submitUrl: this.baseUrl + 'New',
 		
-		updateUrl: this.baseUrl + 'update',
+		updateUrl: this.baseUrl + 'Update',
 	},
 
-	visible: -1,
+	active: -1,
 
 	tags: [],
 
@@ -60,7 +60,7 @@ var Swagger_Jacker = {
 		// Show Tags
 		this.showTags( tab );		
 
-		this.visible *= -1;
+		this.active *= -1;
 	},
 
 	showTags: function( tab ){
@@ -89,7 +89,7 @@ var Swagger_Jacker = {
 
 	deactivate: function(){
 		this.unrender();
-		this.visible *= -1;
+		this.active *= -1;
 	},
 
 	log: function( msg ){

@@ -22,7 +22,7 @@ if( typeof ( SwaggerJacker ) == "object" ){
 				// Add Extension Button Click Event 
 				chrome.browserAction.onClicked.addListener( function( tab ) {
 					
-					if ( !SwaggerJacker.visible ){
+					if ( !SwaggerJacker.active ){
 					
 					// Load jQuery
 				    chrome.tabs.executeScript( tab, { file:'jquery.min.js', allFrames:false }, function(){
