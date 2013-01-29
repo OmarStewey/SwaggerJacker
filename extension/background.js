@@ -1,48 +1,45 @@
 // On page load
-
-// Load SwaggerJacker library
-chrome.tabs.executeScript( tab, { file:'SwaggerJacker.min.js', allFrames:false }, function(){
+var swaggerJacker = new SwaggerJacker();
 
 // If library loaded
-if( typeof ( SwaggerJacker ) == "object" ){
+if (typeof (swaggerJacker) == "object") {
 
-		// Fetch Tags
-		SwaggerJacker.fetchTags ( currentTab.Url );
+    // Fetch Tags
+    $.when( swaggerJacker.fetchTags() ).done(function () {
 
-			// Does page have tags
-			if( SwaggerJacker.Tags.length > 0 ){
-				
-				// Yes
-				// Change extension icon
-				chrome.browserAction.setIcon({
-				  path: 'tags_found_icon.png'
-				});
-			}
+        // Does page have tags
+        if (swaggerJacker.tags.length > 0) {
 
-				// Add Extension Button Click Event 
-				chrome.browserAction.onClicked.addListener( function( tab ) {
-					
-					if ( !SwaggerJacker.active ){
-					
-					// Load jQuery
-				    chrome.tabs.executeScript( tab, { file:'jquery.min.js', allFrames:false }, function(){
+            // Yes
+            // Change extension icon
+            chrome.browserAction.setIcon({
+                path: 'tags_found_icon.png'
+            });
+        }
+    });
 
-				    		// Show Tagging Interface
-				    		SwaggerJacker.render( currentTab );
+    // Add Extension Button Click Event 
+    chrome.browserAction.onClicked.addListener(function (tab) {
 
-				    		// Tagging interface should allow user to:
+        if (!swaggerJacker.active) {
 
-				    			// Create new Tag
-				    });
+            // Load jQuery
+            chrome.tabs.executeScript(tab, { file: 'jquery.min.js', allFrames: false }, function () {
 
-				    }
-					else{
+                // Show Tagging Interface
+                swaggerJacker.render(currentTab);
 
-						// Toggle ui
-						SwaggerJacker.deactivate();
+                // Tagging interface should allow user to:
 
-					}
-				});
-			}
-	}
-});
+                // Create new Tag
+            });
+
+        }
+        else {
+
+            // Toggle ui
+            swaggerJacker.deactivate();
+
+        }
+    });
+}

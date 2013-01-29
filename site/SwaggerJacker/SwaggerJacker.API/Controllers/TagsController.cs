@@ -39,7 +39,10 @@ namespace SwaggerJacker.API.Controllers
         [HttpGet]
         public IEnumerable<Tag> Index( string url )
         {
-            List<Tag> allTags = _dal.GetTags( "http://www.omarstewey.com" ).ToList<Tag>();
+            // ToDo: Extract
+            if (url.EndsWith("/")) url = url.Substring(0, url.Length - 1);
+
+            List<Tag> allTags = _dal.GetTags( url ).ToList<Tag>();
             return allTags;
         }
 

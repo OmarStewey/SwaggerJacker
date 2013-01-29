@@ -11,48 +11,32 @@ namespace SwaggerJacker.DAL
     public class TagDBConnection
     {
         #region Fields - Private
-        private string _connectionString { get; set; } 
+        private string _connectionString { get; set; }
         #endregion
 
         #region CTOR
-        public TagDBConnection( string connectionString )
+        public TagDBConnection(string connectionString)
         {
             this._connectionString = connectionString;
         }
         #endregion
 
         #region Methods - Public
-        
-        public IDataReader ExecuteQuery( string query )
-        {
-            SqlConnection connection = new SqlConnection( _connectionString );
-            SqlCommand cmd = null;
-            try
-            {
-                cmd = new SqlCommand( query, connection );
-                connection.Open();
-                IDataReader reader = cmd.ExecuteReader( CommandBehavior.CloseConnection );
-                return reader;
-            }
-            catch
-            {
-                // Close open resources
-                if (cmd != null) cmd.Dispose();
-                if (connection != null) connection.Close();
-                throw;
-            }
-        
-        }
 
-        public IDataReader ExecuteQuery( SqlCommand procedure )
+        public IDataReader ExecuteQuery(string procedureName, Dictionary<string, string> procedureParameters)
         {
-            SqlConnection connection = new SqlConnection( _connectionString );
-            procedure.Connection = connection;
+            SqlConnection connection = new SqlConnection(_connectionString);
+            SqlCommand procedure = new SqlCommand(procedureName, connection);
+            procedure.CommandType = CommandType.StoredProcedure;
+
+            foreach (string parameter in procedureParameters.Keys)
+                procedure.Parameters.Add(new SqlParameter (parameter, procedureParameters[parameter]));
+
 
             try
             {
                 connection.Open();
-                IDataReader reader = procedure.ExecuteReader( CommandBehavior.CloseConnection );
+                IDataReader reader = procedure.ExecuteReader(CommandBehavior.CloseConnection);
                 return reader;
             }
             catch

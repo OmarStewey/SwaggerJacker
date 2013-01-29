@@ -4,6 +4,5 @@ C:\os\SwaggerJacker\SwaggerJacker.BusinessObjects\obj\Debug\SwaggerJacker.Busine
 C:\os\SwaggerJacker\SwaggerJacker.BusinessObjects\obj\Debug\SwaggerJacker.BusinessObjects.pdb
 C:\os\dev\SwaggerJacker\site\SwaggerJacker\SwaggerJacker.BusinessObjects\bin\Debug\SwaggerJacker.BusinessObjects.dll
 C:\os\dev\SwaggerJacker\site\SwaggerJacker\SwaggerJacker.BusinessObjects\bin\Debug\SwaggerJacker.BusinessObjects.pdb
-C:\os\dev\SwaggerJacker\site\SwaggerJacker\SwaggerJacker.BusinessObjects\obj\Debug\SwaggerJacker.BusinessObjects.csprojResolveAssemblyReference.cache
 C:\os\dev\SwaggerJacker\site\SwaggerJacker\SwaggerJacker.BusinessObjects\obj\Debug\SwaggerJacker.BusinessObjects.dll
 C:\os\dev\SwaggerJacker\site\SwaggerJacker\SwaggerJacker.BusinessObjects\obj\Debug\SwaggerJacker.BusinessObjects.pdb

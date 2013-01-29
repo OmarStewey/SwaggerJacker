@@ -1,101 +1,136 @@
-var Swagger_Jacker = {
+var SwaggerJacker = function(){
 
-	config: {
+    var baseUrl =  'http://localhost:1042/api/';
+    
+    return {
 
-		baseUrl: 'http://www.site.com/swaggerjacker/api/',
+        debug: true,
 
-		fetchUrl: this.baseUrl + 'Tags',
+        config: {
 
-		submitUrl: this.baseUrl + 'New',
-		
-		updateUrl: this.baseUrl + 'Update',
-	},
+            fetchUrl: baseUrl + 'Tags',
 
-	active: -1,
+            submitUrl: this.baseUrl + 'New',
 
-	tags: [],
+            updateUrl: this.baseUrl + 'Update',
+        },
 
-	addTag: function( tagInfo ){
+        active: -1,
 
-		// Post new tag
-		$.ajax( {
-			url: this.submitUrl,
-			type: 'post',
-			data: {
-				url: tagInfo.url,
-				
-				title: tagInfo.title,
+        tags: [],
 
-				coords: {
-					x: tagInfo.coords.x,
-					y: tagInfo.coords.y
-				},
+        addTag: function (tagInfo) {
 
-				img: tagInfo.img,
+            // Post new tag
+            $.ajax({
+                url: this.config.submitUrl,
+                type: 'post',
+                context: this,
+                data: {
+                    url: tagInfo.url,
 
-				score: 0
-			}
+                    title: tagInfo.title,
 
-		} ).done( function( data ){
-			
-			var newTag = new Tag({
-				url: data.url,
+                    coords: {
+                        x: tagInfo.coords.x,
+                        y: tagInfo.coords.y
+                    },
 
-				title: data.title,
+                    img: tagInfo.img,
 
-				coords: data.coords,
+                    score: 0
+                }
 
-				img: data.img,
+            }).done(function (data) {
 
-				score: data.score 
-			} );
+                var newTag = new Tag({
+                    url: data.url,
 
-			newTag.render();
-		});
-	},
+                    title: data.title,
 
-	render: function( tab ){
-		this.log( 'Rendering Swagger Jacker interface.' );
+                    coords: data.coords,
 
-		// Show Tags
-		this.showTags( tab );		
+                    img: data.img,
 
-		this.active *= -1;
-	},
+                    score: data.score
+                });
 
-	showTags: function( tab ){
-		this.log( 'Rendering ' + this.tags.length + ' tags.' );
+                newTag.render();
+            });
+        },
 
-		// Each tag should render itself
-		for (var i = 0; i <= this.tags.length; i++) {
-			this.tags[i].render();	
-		});	
-	},
-	
-	unrender: function( tab ){
-		this.log( 'Un-Rendering Swagger Jacker interface.' );		
+        fetchTags: function () {
+            var status = $.Deferred();
+            
+            $.ajax({
 
-		this.hideTags();
-	},
+                url: this.config.fetchUrl,
 
-	hideTags: function( tab ){
-		this.log( 'Un-Rendering ' + this.tags.length + ' tags.' );
+                data: {
+                    url: location.href
+                },
 
-		// Each tag should un-render itself
-		for (var i = 0; i <= this.tags.length; i++) {
-			this.tags[i].unrender();	
-		});		
-	},
+                context: this,
 
-	deactivate: function(){
-		this.unrender();
-		this.active *= -1;
-	},
+                type: 'get',
 
-	log: function( msg ){
+                dataType: 'json'
 
-		if( this.debug ){
-			console.log( 'sj_debugger: ' + msg );
-		}
-	}
+            }).done(function (pageTags) {
+
+                this.log(pageTags);
+                for (var i = 0; i < pageTags.length; i++) {
+                    this.tags.push(new Tag(pageTags[i]));
+                }
+                status.resolve();
+            });
+
+            return status;
+        },
+
+        render: function (tab) {
+            this.log('Rendering Swagger Jacker interface.');
+
+            // Show Tags
+            this.showTags(tab);
+
+            this.active *= -1;
+        },
+
+        showTags: function (tab) {
+            this.log('Rendering ' + this.tags.length + ' tags.');
+
+            // Each tag should render itself
+            for (var i = 0; i <= this.tags.length; i++) {
+                this.tags[i].render();
+            }
+        },
+
+        unrender: function (tab) {
+            this.log('Un-Rendering Swagger Jacker interface.');
+
+            this.hideTags();
+        },
+
+        hideTags: function (tab) {
+            this.log('Un-Rendering ' + this.tags.length + ' tags.');
+
+            // Each tag should un-render itself
+            for (var i = 0; i <= this.tags.length; i++) {
+                this.tags[i].unrender();
+            };
+        },
+
+        deactivate: function () {
+            this.unrender();
+            this.active *= -1;
+        },
+
+        log: function (msg) {
+
+            if (this.debug) {
+                console.log('sj_debugger: ' + msg);
+            }
+        }
+    }
 };

@@ -13,6 +13,7 @@ namespace SwaggerJacker.DAL
     {
         #region Fields - Private
         private TagDBConnection _sqlConnection;
+        private const string _fetchByUrlProcedureName = "GetTagsForPage";
         #endregion
 
         #region CTOR
@@ -29,9 +30,11 @@ namespace SwaggerJacker.DAL
         public IEnumerable<Tag> GetTags( string pageUrl )
         {
             List<Tag> tags = new List<Tag>();
-            SqlCommand getTagsCmd = new SqlCommand();
+            
+            Dictionary<string, string> procedureParams = new Dictionary<string, string>();
+            procedureParams.Add("@pageUrl", pageUrl);
 
-            using (IDataReader reader = _sqlConnection.ExecuteQuery( "select * from Tags" ))
+            using ( IDataReader reader = _sqlConnection.ExecuteQuery( _fetchByUrlProcedureName, procedureParams ) )
             {
                 while (reader.Read())
                 {
