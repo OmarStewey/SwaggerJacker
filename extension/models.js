@@ -7,19 +7,19 @@ var Tag = function( argObj ){
 
 	this.Id = argObj.Id;
 
-	this.img = $( 'img[src=' + argObj.imgSrc + ']' ); // jQuery wrapped <img> tag.
+	this.img = $( 'img[src="' + argObj.Img + '"]' ); // jQuery wrapped <img> tag.
 
 	this.coords = {
-		x: argObj.x,
-		y: argObj.y
+		x: argObj.Coords.x,
+		y: argObj.Coords.y
 	};
 
-	this.title = argObj.title;
-	this.description = argObj.description;
+	this.title = argObj.Title;
+	this.description = argObj.Description;
 
-	this.url = argObj.url;
+	this.url = argObj.Url;
 
-	this.score = 0;
+	this.score = argObj.Score;
 }
 
 // Tag methods
@@ -39,8 +39,7 @@ Tag.prototype.render = function(){
 	// Add absolutely positioned tag marker
 	// replace with template
 	imgWrapper
-		.append('<span class="sj_tag" style="left: '+ this.coords.x + '; top: ' + this.coords.y + '" />')
-		.text( this.title );
+		.append('<span class="sj_tag" style="left: ' + this.coords.x + '; top: ' + this.coords.y + '" >' + tag.title + '</span>');
 }
 
 Tag.prototype.delete = function(){

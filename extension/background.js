@@ -5,41 +5,37 @@ var swaggerJacker = new SwaggerJacker();
 if (typeof (swaggerJacker) == "object") {
 
     // Fetch Tags
-    $.when( swaggerJacker.fetchTags() ).done(function () {
+    $.when(swaggerJacker.fetchTags()).done(function () {
 
-        // Does page have tags
-        if (swaggerJacker.tags.length > 0) {
-
-            // Yes
-            // Change extension icon
-            chrome.browserAction.setIcon({
-                path: 'tags_found_icon.png'
-            });
-        }
+        // Update icon if page has tags
+        chrome.extension.sendMessage({ tagsFound: swaggerJacker.tags.length }, function (response) {
+        })
     });
 
-    // Add Extension Button Click Event 
-    chrome.browserAction.onClicked.addListener(function (tab) {
 
-        if (!swaggerJacker.active) {
+    // Handle extension click
+    chrome.extension.onRequest.addListener(
+        function (request, sender, sendResponse) {
+            
+         if (swaggerJacker.active != true ) {
+            
+             // Show Tagging Interface
+             swaggerJacker.render();
 
-            // Load jQuery
-            chrome.tabs.executeScript(tab, { file: 'jquery.min.js', allFrames: false }, function () {
+             // Tagging interface should allow user to:
 
-                // Show Tagging Interface
-                swaggerJacker.render(currentTab);
+             // Create new Tag
 
-                // Tagging interface should allow user to:
 
-                // Create new Tag
-            });
+         }
+         else {
 
-        }
-        else {
+             // Toggle ui
+             swaggerJacker.deactivate();
 
-            // Toggle ui
-            swaggerJacker.deactivate();
+         }
 
-        }
-    });
+     });
+
+    
 }

@@ -1,0 +1,17 @@
+.sjImageWrap {
+    position: relative;
+    display:inline-block;
+}
+.sj_tag {
+    background: #000;
+    opacity:0.75;
+    display:block;
+    border: 1px solid #fff200;
+    color: #fff;
+    font-family:Arial;
+    font-weight:bold;
+    padding: 3px 6px 3px 6px;
+    width: 70px;
+    position:absolute;
+    font-size:10px;
+}

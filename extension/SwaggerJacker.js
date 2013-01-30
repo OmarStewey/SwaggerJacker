@@ -88,21 +88,21 @@ var SwaggerJacker = function(){
             return status;
         },
 
-        render: function (tab) {
+        render: function () {
             this.log('Rendering Swagger Jacker interface.');
 
             // Show Tags
-            this.showTags(tab);
+            this.showTags();
 
             this.active *= -1;
         },
 
-        showTags: function (tab) {
+        showTags: function () {
             this.log('Rendering ' + this.tags.length + ' tags.');
 
             // Each tag should render itself
             for (var i = 0; i <= this.tags.length; i++) {
-                this.tags[i].render();
+                this.renderTag(this.tags[i]);
             }
         },
 
@@ -119,6 +119,27 @@ var SwaggerJacker = function(){
             for (var i = 0; i <= this.tags.length; i++) {
                 this.tags[i].unrender();
             };
+        },
+
+        renderTag: function( tag ){
+            // Get image
+            var tagImg = tag.img;
+            var imgWrapper = tag.img;
+
+            if (imgWrapper.parent().eq(0).tagName != "body")
+                imgWrapper = imgWrapper.parent();
+
+            // Check if wrapped
+            if( !imgWrapper.hasClass('sjImageWrap') ){
+
+                // Wrap in relatively positioned span
+                imgWrapper = tagImg.wrap('<span class="sjImageWrap" />');
+            }
+
+            // Add absolutely positioned tag marker
+            // replace with template
+            imgWrapper
+                .append('<span title="'+ tag.title +'" class="sj_tag" style="left: ' + tag.coords.x + 'px; top: ' + tag.coords.y + 'px;">' + tag.title + '</span>');
         },
 
         deactivate: function () {

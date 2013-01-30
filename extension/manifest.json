@@ -4,6 +4,11 @@
   "version": "1",
   "description": "Find swag, Tag swag.",
 
+
+  "background": {
+    "scripts": ["events.js"]
+	},
+
   "browser_action": {
     "icons": [ "icon.png" ],
     "default_icon": "icon.png"
@@ -13,6 +18,7 @@
     {
       "matches": ["<all_urls>"],
       "js": ["jquery.min.js", "models.js", "SwaggerJacker.js", "background.js"],
+	  "css": ["tag_style.css"],
       "all_frames":true
     }],
   "permissions": [
