@@ -4,7 +4,7 @@
 // Tags with a score below -x should not be rendered.
 
 var Tag = function( argObj ){
-
+    console.log(argObj);
 	this.Id = argObj.Id;
 
 	this.img = $( 'img[src="' + argObj.Img + '"]' ); // jQuery wrapped <img> tag.
@@ -39,7 +39,7 @@ Tag.prototype.render = function(){
 	// Add absolutely positioned tag marker
 	// replace with template
 	imgWrapper
-		.append('<span class="sj_tag" style="left: ' + this.coords.x + '; top: ' + this.coords.y + '" >' + tag.title + '</span>');
+		.append('<span class="sj_tag" style="left: ' + this.coords.x + '; top: ' + this.coords.y + '" >' + this.title + '</span>');
 }
 
 Tag.prototype.delete = function(){

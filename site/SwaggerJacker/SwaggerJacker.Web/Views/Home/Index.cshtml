@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<SwaggerJacker.BusinessObjects.Tag>
 
+@Model.Count().ToString();
+
 @foreach (var item in Model)
 {
     <p>@item.Title</p>

@@ -28,15 +28,21 @@ namespace SwaggerJacker.Web.Controllers
         }
         #endregion
 
-        public ActionResult Index()
+        public ActionResult Index(string url)
         {
-            var tags = _dal.GetTags( "" );
+            var tags = _dal.GetTags( url );
             return View( tags );
         }
 
-        public ActionResult About()
+        public string About()
         {
-            return View();
+            string siteName = "http://www.omarstewey.com";
+            string tempUrl = siteName.Replace("http://", "").Replace("https://", "").Trim();
+            string[] SiteURLArr = tempUrl.Split('/');
+            string SiteURL = SiteURLArr[0];
+            System.Net.IPAddress[] ip = System.Net.Dns.GetHostAddresses(SiteURL);
+
+            return ip[0].ToString();
         }
 
         public ActionResult Contact()

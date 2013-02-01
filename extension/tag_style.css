@@ -15,3 +15,8 @@
     position:absolute;
     font-size:10px;
 }
+
+.sjTaggable {
+    border: 1px solid #fff200;
+    cursor:crosshair;
+}

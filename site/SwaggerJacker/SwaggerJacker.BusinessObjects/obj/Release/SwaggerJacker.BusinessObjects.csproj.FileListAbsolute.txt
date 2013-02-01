@@ -1,0 +1,5 @@
+C:\os\dev\SwaggerJacker\site\SwaggerJacker\SwaggerJacker.BusinessObjects\bin\Release\SwaggerJacker.BusinessObjects.dll
+C:\os\dev\SwaggerJacker\site\SwaggerJacker\SwaggerJacker.BusinessObjects\bin\Release\SwaggerJacker.BusinessObjects.pdb
+C:\os\dev\SwaggerJacker\site\SwaggerJacker\SwaggerJacker.BusinessObjects\obj\Release\SwaggerJacker.BusinessObjects.csprojResolveAssemblyReference.cache
+C:\os\dev\SwaggerJacker\site\SwaggerJacker\SwaggerJacker.BusinessObjects\obj\Release\SwaggerJacker.BusinessObjects.dll
+C:\os\dev\SwaggerJacker\site\SwaggerJacker\SwaggerJacker.BusinessObjects\obj\Release\SwaggerJacker.BusinessObjects.pdb

@@ -1,18 +1,22 @@
-var SwaggerJacker = function(){
+var SwaggerJacker = function () {
 
-    var baseUrl =  'http://localhost:1042/api/';
-    
+    var baseUrl = 'http://localhost:1042/api/Tags/';
+
     return {
 
         debug: true,
 
         config: {
 
-            fetchUrl: baseUrl + 'Tags',
+            fetchUrl: baseUrl + 'Index',
 
-            submitUrl: this.baseUrl + 'New',
+            submitUrl: baseUrl + 'New',
 
-            updateUrl: this.baseUrl + 'Update',
+            updateUrl: baseUrl + 'Update',
+
+            minImageHeight: 30,
+
+            minImageWidth: 30
         },
 
         active: -1,
@@ -27,32 +31,36 @@ var SwaggerJacker = function(){
                 type: 'post',
                 context: this,
                 data: {
-                    url: tagInfo.url,
+                    Url: tagInfo.url,
 
-                    title: tagInfo.title,
+                    Title: tagInfo.title,
 
-                    coords: {
+                    Description: tagInfo.description,
+
+                    Coords: {
                         x: tagInfo.coords.x,
                         y: tagInfo.coords.y
                     },
 
-                    img: tagInfo.img,
+                    Img: tagInfo.img,
 
-                    score: 0
+                    Score: 0
                 }
 
             }).done(function (data) {
 
                 var newTag = new Tag({
-                    url: data.url,
+                    Url: data.Url,
 
-                    title: data.title,
+                    Title: data.Title,
 
-                    coords: data.coords,
+                    Description: data.Description,
 
-                    img: data.img,
+                    Coords: data.Coords,
 
-                    score: data.score
+                    Img: data.Img,
+
+                    Score: data.Score
                 });
 
                 newTag.render();
@@ -61,7 +69,7 @@ var SwaggerJacker = function(){
 
         fetchTags: function () {
             var status = $.Deferred();
-            
+
             $.ajax({
 
                 url: this.config.fetchUrl,
@@ -88,11 +96,51 @@ var SwaggerJacker = function(){
             return status;
         },
 
+        loadControls: function () {
+
+            var sjRef = this;
+
+            var pageImages = $('img').filter(function () {
+                return (this.width > sjRef.config.minImageWidth && this.height > sjRef.config.minImageHeight)
+            });
+
+            pageImages.hover(function () {
+                $(this).addClass('sjTaggable');
+            }, function () {
+                $(this).removeClass('sjTaggable');
+            });
+
+
+            pageImages.mousedown(function (e) {
+
+                var currentImage = $(this);
+
+                if (currentImage.hasClass('sjTaggable')) {
+
+                    sjRef.addTag({
+                        title: "Tag Title",
+
+                        description: "Tag Description",
+
+                        img: currentImage.attr("src"),
+
+                        coords: { x: e.clientX, y: e.clientY },
+
+                        url: location.href
+                    });
+                }
+            })
+        },
+
         render: function () {
             this.log('Rendering Swagger Jacker interface.');
 
             // Show Tags
-            this.showTags();
+            if (this.tags.length > 0) {
+                this.showTags();
+            }
+
+            this.loadControls();
 
             this.active *= -1;
         },
@@ -101,15 +149,18 @@ var SwaggerJacker = function(){
             this.log('Rendering ' + this.tags.length + ' tags.');
 
             // Each tag should render itself
+
             for (var i = 0; i <= this.tags.length; i++) {
-                this.renderTag(this.tags[i]);
+                //this.renderTag(this.tags[i]);
+
             }
         },
 
         unrender: function (tab) {
             this.log('Un-Rendering Swagger Jacker interface.');
-
-            this.hideTags();
+            if (this.tags.length > 0) {
+                this.hideTags();
+            }
         },
 
         hideTags: function (tab) {
@@ -121,7 +172,7 @@ var SwaggerJacker = function(){
             };
         },
 
-        renderTag: function( tag ){
+        renderTag: function (tag) {
             // Get image
             var tagImg = tag.img;
             var imgWrapper = tag.img;
@@ -130,7 +181,7 @@ var SwaggerJacker = function(){
                 imgWrapper = imgWrapper.parent();
 
             // Check if wrapped
-            if( !imgWrapper.hasClass('sjImageWrap') ){
+            if (!imgWrapper.hasClass('sjImageWrap')) {
 
                 // Wrap in relatively positioned span
                 imgWrapper = tagImg.wrap('<span class="sjImageWrap" />');
@@ -139,7 +190,7 @@ var SwaggerJacker = function(){
             // Add absolutely positioned tag marker
             // replace with template
             imgWrapper
-                .append('<span title="'+ tag.title +'" class="sj_tag" style="left: ' + tag.coords.x + 'px; top: ' + tag.coords.y + 'px;">' + tag.title + '</span>');
+                .append('<span title="' + tag.title + '" class="sj_tag" style="left: ' + tag.coords.x + 'px; top: ' + tag.coords.y + 'px;">' + tag.title + '</span>');
         },
 
         deactivate: function () {

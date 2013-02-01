@@ -1,0 +1,7 @@
+C:\os\dev\SwaggerJacker\site\SwaggerJacker\SwaggerJacker.DAL\bin\Release\SwaggerJacker.DAL.dll
+C:\os\dev\SwaggerJacker\site\SwaggerJacker\SwaggerJacker.DAL\bin\Release\SwaggerJacker.DAL.pdb
+C:\os\dev\SwaggerJacker\site\SwaggerJacker\SwaggerJacker.DAL\bin\Release\SwaggerJacker.BusinessObjects.dll
+C:\os\dev\SwaggerJacker\site\SwaggerJacker\SwaggerJacker.DAL\bin\Release\SwaggerJacker.BusinessObjects.pdb
+C:\os\dev\SwaggerJacker\site\SwaggerJacker\SwaggerJacker.DAL\obj\Release\SwaggerJacker.DAL.csprojResolveAssemblyReference.cache
+C:\os\dev\SwaggerJacker\site\SwaggerJacker\SwaggerJacker.DAL\obj\Release\SwaggerJacker.DAL.dll
+C:\os\dev\SwaggerJacker\site\SwaggerJacker\SwaggerJacker.DAL\obj\Release\SwaggerJacker.DAL.pdb
