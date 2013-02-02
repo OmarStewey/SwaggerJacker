@@ -42,7 +42,7 @@ Tag.prototype.render = function(){
 			var imgOffset = tagImg.offset();
 
 			imgWrapper
-			.append('<span class="sj_tag" style="left: ' + ( this.coords.x - imgOffset.left ) + 'px; top: ' + ( this.coords.y - imgOffset.top )+ 'px; z-index:100" ><a href="' + this.description + '">' + this.title + '</a></span>');
+			.append('<span class="sj_tag" style="left: ' + ( this.coords.x - imgOffset.left ) + 'px; top: ' + ( this.coords.y - imgOffset.top )+ 'px; z-index:6000" ><a href="' + this.description + '">' + this.title + '</a></span>');
 		}else{
 			imgWrapper = tagImg.parent();
 		}
