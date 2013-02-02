@@ -51,7 +51,6 @@ namespace SwaggerJacker.API.Controllers
         [HttpPost]
         public Tag New(Tag newTag)
         {
-
             return _dal.AddTag(newTag);
         }
 

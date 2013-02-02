@@ -36,13 +36,7 @@ namespace SwaggerJacker.Web.Controllers
 
         public string About()
         {
-            string siteName = "http://www.omarstewey.com";
-            string tempUrl = siteName.Replace("http://", "").Replace("https://", "").Trim();
-            string[] SiteURLArr = tempUrl.Split('/');
-            string SiteURL = SiteURLArr[0];
-            System.Net.IPAddress[] ip = System.Net.Dns.GetHostAddresses(SiteURL);
-
-            return ip[0].ToString();
+            return "";
         }
 
         public ActionResult Contact()
@@ -52,7 +46,7 @@ namespace SwaggerJacker.Web.Controllers
 
         protected override void Dispose( bool disposing )
         {
-                base.Dispose( disposing );
+            base.Dispose( disposing );
         }
     }
 

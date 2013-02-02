@@ -11,7 +11,7 @@ namespace SwaggerJacker.API
         {
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/Tags/{action}",
+                routeTemplate: "Tags/{action}",
                 defaults: new { controller = "Tags", action = "Index" }
             );
         }

@@ -24,13 +24,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/28/2013 22:23:49</publishTime>
     </File>
     <File Include="bin/SwaggerJacker.BusinessObjects.dll">
-      <publishTime>01/31/2013 03:37:24</publishTime>
+      <publishTime>02/01/2013 20:03:55</publishTime>
     </File>
     <File Include="bin/SwaggerJacker.DAL.dll">
-      <publishTime>01/31/2013 03:37:25</publishTime>
+      <publishTime>02/01/2013 20:03:55</publishTime>
     </File>
     <File Include="bin/SwaggerJacker.Web.dll">
-      <publishTime>01/31/2013 04:59:55</publishTime>
+      <publishTime>02/01/2013 20:37:52</publishTime>
     </File>
     <File Include="bin/System.Net.Http.dll">
       <publishTime>01/28/2013 22:23:49</publishTime>
@@ -111,16 +111,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/31/2013 04:56:16</publishTime>
     </File>
     <File Include="Views/Home/Contact.cshtml">
-      <publishTime>01/28/2013 22:23:48</publishTime>
+      <publishTime>02/01/2013 20:23:00</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>01/28/2013 22:23:48</publishTime>
+      <publishTime>02/01/2013 20:15:45</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>01/28/2013 22:23:48</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>01/28/2013 22:23:48</publishTime>
+      <publishTime>02/01/2013 20:26:42</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>01/28/2013 22:23:48</publishTime>
@@ -132,7 +132,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/28/2013 22:23:48</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/31/2013 05:00:24</publishTime>
+      <publishTime>02/01/2013 20:38:57</publishTime>
     </File>
   </ItemGroup>
 </Project>
