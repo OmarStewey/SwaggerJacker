@@ -2,21 +2,43 @@
     position: relative;
     display:inline-block;
 }
+
 .sj_tag {
     background: #000;
     opacity:0.75;
     display:block;
-    border: 1px solid #fff200;
+    border: 2px solid #fff200;
     color: #fff;
     font-family:Arial;
     font-weight:bold;
     padding: 3px 6px 3px 6px;
-    width: 70px;
+    width: 200px;
+    height:25px;
     position:absolute;
-    font-size:10px;
+    font-size:14px;
+    visibility: none;
+}
+
+.sj_tag a, .sj_tag a:visited{
+    color:#fff !important;
 }
 
 .sjTaggable {
-    border: 1px solid #fff200;
-    cursor:crosshair;
+    outline: 4px solid red;
+    cursor: crosshair;
+    z-index: 5001; /* show on top of overlay */
+}
+
+
+.sj_overlay{
+     pointer-events: none;
+     background-color: #000 !important;
+     background-repeat: repeat;
+     position: absolute;
+     top: 0;
+     left: 0;
+     background-color: black;
+     width: 100%;
+     z-index: 5000;
+     opacity: 0.2;
 }

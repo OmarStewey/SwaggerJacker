@@ -1,4 +1,18 @@
 
+chrome.tabs.onUpdated.addListener(function(tabId,changeInfo,tab){
+
+  // Reset Icon
+  chrome.browserAction.setIcon({
+          path: 'icon.png'
+  });
+
+  // Run SJ
+  if(changeInfo.status == 'complete'){
+    chrome.tabs.executeScript(null, {file: "background.js"});
+  }
+
+});
+
 chrome.extension.onMessage.addListener(
   function (request, sender, sendResponse) {
       
@@ -19,10 +33,10 @@ chrome.extension.onMessage.addListener(
 // Add Extension Button Click Event 
 chrome.browserAction.onClicked.addListener(function (tab) {
 
-chrome.tabs.getSelected(null, function (tab) {
-    chrome.tabs.sendRequest(tab.id, { req: "func" }, function (response) {
-        
-    });
-});
+  chrome.tabs.getSelected(null, function (tab) {
+      chrome.tabs.sendRequest(tab.id, { req: "func" }, function (response) {
+          
+      });
+  });
 
 });

@@ -1,6 +1,6 @@
 var SwaggerJacker = function () {
 
-    var baseUrl = 'http://localhost:1042/api/Tags/';
+    var baseUrl = 'http://www.omarstewey.com/sj/api/Tags/';
 
     return {
 
@@ -16,7 +16,11 @@ var SwaggerJacker = function () {
 
             minImageHeight: 30,
 
-            minImageWidth: 30
+            minImageWidth: 30,
+
+            overlayClass: '.sj_overlay',
+
+            overlayMarkup: '<div class="sj_overlay" />'
         },
 
         active: -1,
@@ -68,6 +72,9 @@ var SwaggerJacker = function () {
         },
 
         fetchTags: function () {
+            
+            this.log('Fetching tags for: ' + location.href);
+
             var status = $.Deferred();
 
             $.ajax({
@@ -105,17 +112,31 @@ var SwaggerJacker = function () {
             });
 
             pageImages.hover(function () {
+
+                var img = $( this );
+                var positioning = img.css('position');
+
+                if( positioning != 'absolute' ){
+                     img.css('position', 'relative');
+                }
                 $(this).addClass('sjTaggable');
             }, function () {
                 $(this).removeClass('sjTaggable');
             });
 
 
-            pageImages.mousedown(function (e) {
+            pageImages.click(function (e) {
+
+            if( e.which == 1 )
+            {
+                e.preventDefault();
+
+                var win = $(window);
 
                 var currentImage = $(this);
 
                 if (currentImage.hasClass('sjTaggable')) {
+
 
                     sjRef.addTag({
                         title: "Tag Title",
@@ -124,16 +145,32 @@ var SwaggerJacker = function () {
 
                         img: currentImage.attr("src"),
 
-                        coords: { x: e.clientX, y: e.clientY },
+                        coords: { x: e.clientX + win.scrollLeft() , y: e.clientY + win.scrollTop() },
 
                         url: location.href
                     });
                 }
+            }
             })
+        },
+
+        unloadControls: function(){
+
+            var sjRef = this;
+
+            var pageImages = $('img').filter(function () {
+                            return (this.width > sjRef.config.minImageWidth && this.height > sjRef.config.minImageHeight)
+                        });
+
+            pageImages.unbind('mouseenter mouseleave click');
         },
 
         render: function () {
             this.log('Rendering Swagger Jacker interface.');
+
+
+            // Render overlay
+            this.loadOverlay();
 
             // Show Tags
             if (this.tags.length > 0) {
@@ -145,53 +182,51 @@ var SwaggerJacker = function () {
             this.active *= -1;
         },
 
+
+        loadOverlay: function(){
+            this.log('Loading overlay');
+
+            $('body')
+                .append(this.config.overlayMarkup)
+                .end().find(this.config.overlayClass).height($(document).height());
+        },
+
+        removeOverlay: function(){
+            this.log('Removing overlay');
+            $(this.config.overlayClass).remove();
+        },
+
         showTags: function () {
             this.log('Rendering ' + this.tags.length + ' tags.');
 
             // Each tag should render itself
 
-            for (var i = 0; i <= this.tags.length; i++) {
-                //this.renderTag(this.tags[i]);
-
+            for (var i = 0; i < this.tags.length; i++) {
+                this.tags[i].render();
             }
         },
 
         unrender: function (tab) {
             this.log('Un-Rendering Swagger Jacker interface.');
+            
+            this.removeOverlay();
+
+            this.unloadControls();
+
             if (this.tags.length > 0) {
                 this.hideTags();
             }
+
         },
 
         hideTags: function (tab) {
             this.log('Un-Rendering ' + this.tags.length + ' tags.');
 
             // Each tag should un-render itself
-            for (var i = 0; i <= this.tags.length; i++) {
+            for (var i = 0; i < this.tags.length; i++) {
                 this.tags[i].unrender();
             };
-        },
-
-        renderTag: function (tag) {
-            // Get image
-            var tagImg = tag.img;
-            var imgWrapper = tag.img;
-
-            if (imgWrapper.parent().eq(0).tagName != "body")
-                imgWrapper = imgWrapper.parent();
-
-            // Check if wrapped
-            if (!imgWrapper.hasClass('sjImageWrap')) {
-
-                // Wrap in relatively positioned span
-                imgWrapper = tagImg.wrap('<span class="sjImageWrap" />');
-            }
-
-            // Add absolutely positioned tag marker
-            // replace with template
-            imgWrapper
-                .append('<span title="' + tag.title + '" class="sj_tag" style="left: ' + tag.coords.x + 'px; top: ' + tag.coords.y + 'px;">' + tag.title + '</span>');
-        },
+        },          
 
         deactivate: function () {
             this.unrender();
